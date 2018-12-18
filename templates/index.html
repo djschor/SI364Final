@@ -1,0 +1,54 @@
+
+
+{% block content %}
+
+<head> 
+    <title> Welcome to <em>Peak</em> <br> Personal KPI Tool </title>
+</head>
+
+{% if not active_set %}
+You have no saved Activities.
+
+{% else %}
+You have {{ len_set }} recorded activities:
+
+<ul> 
+{% for a in active_set %} 
+    <li> {{ a }} </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if count %}
+You have {{ count }} recorded activity logs  <br>
+<br>
+
+{% else %}
+You have no recorded activity logs <br>
+{% endif %}
+<br>
+{% endblock %}
+
+{% block main_content %}
+
+<form method="POST">
+	{{ form.hidden_tag() }} <br>
+	{{ form.name.label }} {{ form.name() }} <br>
+    {{ form.value.label }} {{ form.value() }} <br>
+    {{ form.comment.label }} {{ form.comment() }}<br>
+    {{ form.date.label }} {{ form.date() }}<br>
+	{{ form.submit() }}
+</form>
+{% endblock %}
+
+<div>
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+</div>
+
+
+{% extends 'base.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}

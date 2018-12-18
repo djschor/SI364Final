@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+{% if not goals %}
+There are no Goals to show.
+
+{% else %}
+
+<ul>
+{% for g in goals %}
+    <li> {{ g.name }} <br>
+    {{ g.text }} <br> 
+    Priority: {{ g.priority }} <br>
+    {{ g.date }} </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+<div> 
+Record a New Goal
+<br>
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.name.label }} {{ form.name() }}
+    {{ form.text.label }} {{ form.text() }}
+    {{ form.priority.label }} {{ form.priority() }}
+    {{form.date.label}} {{ form.date() }}
+	{{ form.submit() }}
+</form>
+{% endblock %}

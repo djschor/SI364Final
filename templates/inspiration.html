@@ -1,0 +1,35 @@
+
+
+{% block content %}
+
+{% if len_col %}
+You have {{ len_col }} saved videos 
+
+{% else %}
+You have no saved videos 
+
+{% endif %}
+
+<div> 
+{% if collection %}
+{% for sg in collection.videos %}
+      <strong>{{ sg.title }}</strong>
+      </br>
+      <iframe src={{ sg.embedURL }} width="144" height="81" frameBorder="0" ></iframe>
+    <br><br>
+{% endfor %}
+
+
+{% else %} 
+You have no saved videos in your collection! 
+</div>
+{% endif %}
+
+<div> 
+<form method ="POST"> 
+    {{ form.hidden_tag() }}
+    {{ form.search.label }} {{ form.search() }}
+    {{ form.submit() }}
+</form>
+</div>
+{% endblock %}

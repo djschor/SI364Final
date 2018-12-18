@@ -1,0 +1,30 @@
+
+{% block additive %}
+
+{% if not activities %}
+There are no activity logs to show.
+
+{% else %}
+
+<ol>
+{% for a in activities %}
+    <li> <em> {{ a.name }} <em/> {{ a.value }},{{ a.date }},{{ a.comment }} </li>
+{% endfor %}
+</ol>
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+
+{% endblock %}
+
+<br><br>
+{% extends 'base.html' %}
+
+{% block nav %}
+    {{ super() }}
+{% endblock %}

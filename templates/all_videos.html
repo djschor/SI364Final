@@ -1,0 +1,32 @@
+<h1> All Videos </h1>
+
+{% block contento %}
+Search for {{ search_string }}
+<ul>
+{% for sg in all_vids %}
+<li>
+  <h4>{{ sg.title }}</h4>
+  </br>
+  <iframe src={{ sg.embedURL }} width="144" height="81" frameBorder="0" ></iframe>
+</li>
+<br>
+{% endfor %}
+</ul>
+
+{% if not all_vids %}
+There are no saved videos to show.
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+<a href="{{ url_for('index')}}">Return to search for new videos</a>
+{% endblock %}
+
+{% extends 'base.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}

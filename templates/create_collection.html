@@ -1,0 +1,32 @@
+<h1>Create a new video inspiration collection</h1>
+<p> This collection will show on your home and inspiration pages! </p>
+
+
+{% block main_content %}
+
+
+<div> 
+<p> Here are you searched videos you can save to your collection </p>
+{% for sg in choices %}
+      <strong>{{ sg.title }}</strong>
+      </br>
+      <iframe src={{ sg.embedURL }} width="144" height="81" frameBorder="0" ></iframe>
+    <br><br>
+{% endfor %}
+</div>
+
+<p> Select which videos you'd like to save in your collection </p>
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.name.label }} {{ form.name() }}
+	{{ form.vid_picks.label }} {{ form.vid_picks() }}
+	{{ form.submit.label }}{{ form.submit() }}
+</form>
+
+{% endblock %}
+
+{% extends 'base.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}

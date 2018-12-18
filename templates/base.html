@@ -1,0 +1,28 @@
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('logout') }}">Sign Out {{current_user.username}}</a>
+{% else %}
+    <a href="{{ url_for('login') }}">Sign In</a>
+{% endif %}
+<br>
+<br>
+
+
+{% block content %}
+ 
+{% endblock %}
+
+{% block navigation %}
+
+<div class="page-header">
+<ul><i>
+    <li><a href="{{ url_for('index') }}">Home // Record Activity</a>
+    <li><a href="{{ url_for('activity_log') }}">Activity Log</a></li>
+    <li><a href="{{ url_for('goals') }}">Goals</a></li>
+    <li><a href="{{ url_for('create_collection') }}">Create your video inspiration collection</a></li>
+    <li><a href="{{ url_for('inspiration') }}">Inspiration</a></li></li></i>
+
+</ul>
+<p>--------</p><br>
+</div>
+
+{% endblock %}
